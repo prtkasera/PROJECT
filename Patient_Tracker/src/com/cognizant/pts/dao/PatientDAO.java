@@ -8,9 +8,9 @@ public interface PatientDAO {
 
 	
 	List<Patient> viewAllPatients();
-	boolean updatePatient();
-	boolean deletePatient();
-	boolean addPatient();
+	boolean updatePatient(Patient patient);
+	boolean deletePatient(Patient patient);
+	boolean addPatient(Patient patient);
 	
 	
 }

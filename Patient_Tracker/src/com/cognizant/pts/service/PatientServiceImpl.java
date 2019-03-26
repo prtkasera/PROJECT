@@ -22,19 +22,19 @@ public class PatientServiceImpl implements PatientService{
 	@Override
 	public boolean updatePatient(Patient patient) {
 		// TODO Auto-generated method stub
-		return patientDao.updatePatient();
+		return patientDao.updatePatient(patient);
 	}
 
 	@Override
 	public boolean deletePatient(Patient patient) {
 		// TODO Auto-generated method stub
-		return patientDao.deletePatient();
+		return patientDao.deletePatient(patient);
 	}
 
 	@Override
 	public boolean addPatient(Patient patient) {
 		// TODO Auto-generated method stub
-		return patientDao.addPatient();
+		return patientDao.addPatient(patient);
 	}
 	
 

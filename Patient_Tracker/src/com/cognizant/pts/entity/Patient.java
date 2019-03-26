@@ -3,7 +3,7 @@ package com.cognizant.pts.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+//import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,7 +13,7 @@ public class Patient {
 	
 	@Id
 	@Column(name="patient_id")
-	@GeneratedValue
+	//@GeneratedValue
 	private String patientId;
 	
 	@Column(name="first_name")
@@ -32,10 +32,10 @@ public class Patient {
 	private String dob;
 	
 	@Column(name="contact_number")
-	private String contactNumber;
+	private long contactNumber;
 	
 	@Column(name="alternate_contact_number")
-	private String alternateContactNumber;
+	private long alternateContactNumber;
 	
 	@Column(name="email_id")
 	private String emailId;
@@ -49,8 +49,19 @@ public class Patient {
 	@Column(name="city")
 	private String city;
 	
+	@Column(name="state")
+	private String state;
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@Column(name="zip_code")
-	private String zipCode;
+	private long zipCode;
 	
 	public String getPatientId() {
 		return patientId;
@@ -100,19 +111,19 @@ public class Patient {
 		this.dob = dob;
 	}
 
-	public String getContactNumber() {
+	public long getContactNumber() {
 		return contactNumber;
 	}
 
-	public void setContactNumber(String contactNumber) {
+	public void setContactNumber(long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 
-	public String getAlternateContactNumber() {
+	public double getAlternateContactNumber() {
 		return alternateContactNumber;
 	}
 
-	public void setAlternateContactNumber(String alternateContactNumber) {
+	public void setAlternateContactNumber(long alternateContactNumber) {
 		this.alternateContactNumber = alternateContactNumber;
 	}
 
@@ -148,11 +159,11 @@ public class Patient {
 		this.city = city;
 	}
 
-	public String getZipCode() {
+	public double getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(String zipCode) {
+	public void setZipCode(long zipCode) {
 		this.zipCode = zipCode;
 	}
 
