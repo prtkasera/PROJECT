@@ -10,7 +10,7 @@
 <title>Add Patient</title>
 </head>
 <body>
-<springform:form modelAttribute="patient" method="get" action="addpatient.htm">
+<springform:form modelAttribute="patient" method="post" action="addpatient.htm">
 <table>
 
 <tr>
@@ -33,10 +33,18 @@
 <td><springform:input path="age"/>
 </tr>
 
+ 
 <tr>
-<td><springform:label path="gender">Gender:</springform:label>
-<td><springform:input path="gender"/>
-</tr>
+<td><springform:label path="gender">Gender:</springform:label></td>
+<td>
+	<springform:select path="gender">
+	<springform:options items="${gender}"/>
+	
+	</springform:select>
+</td>	
+</tr> 
+ 
+
 
 <tr>
 <td><springform:label path="dob">Date Of Birth:</springform:label>
@@ -90,8 +98,9 @@
 
 </springform:form>
 ${status}
+<form action="index.htm" method="get">
+<input type="submit" value="View Patients">
+</form>
 
-<form action="viewpatients.jsp" method="get">
-<input type="submit" value="View Patients"/></form>
 </body>
 </html>

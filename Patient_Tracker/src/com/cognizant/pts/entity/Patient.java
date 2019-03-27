@@ -119,7 +119,7 @@ public class Patient {
 		this.contactNumber = contactNumber;
 	}
 
-	public double getAlternateContactNumber() {
+	public long getAlternateContactNumber() {
 		return alternateContactNumber;
 	}
 
@@ -159,7 +159,7 @@ public class Patient {
 		this.city = city;
 	}
 
-	public double getZipCode() {
+	public long getZipCode() {
 		return zipCode;
 	}
 

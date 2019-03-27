@@ -29,7 +29,7 @@
 </tr>
 <c:forEach items="${patientList}" var="patient">
 <tr>
-<td><c:out value="${pateint.patientId}"/></td>
+<td><c:out value="${patient.patientId}"/></td>
 <td><c:out value="${patient.firstName}"/></td>
 <td><c:out value="${patient.lastName}"/></td>
 <td><c:out value="${patient.age}"/></td>
@@ -45,7 +45,7 @@
 
 </c:forEach>
 </table>
-<form method="get" action="addpatientform.htm">
+<form method="post" action="addpatientform.htm">
 <input type="submit" value="Add Patient"/>
 </form>
 </body>
