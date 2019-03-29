@@ -27,9 +27,13 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 	
+	@RequestMapping(value="afterlogin.htm",method=RequestMethod.POST)
+	public String detailsFormPage()
+	{
+		return "afterlogin";
+	}
 	
-	
-	@RequestMapping(value="index.htm" ,method=RequestMethod.GET)
+	@RequestMapping(value="patient.htm" ,method=RequestMethod.POST)
 	public ModelAndView viewPatients()
 	{
 		ModelAndView mv=new ModelAndView();

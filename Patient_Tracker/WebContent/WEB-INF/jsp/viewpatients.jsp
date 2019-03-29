@@ -48,5 +48,12 @@
 <form method="post" action="addpatientform.htm">
 <input type="submit" value="Add Patient"/>
 </form>
+<br>
+<form method="post" action="afterlogin.htm">
+<input type="submit" value="Home"/>
+</form>
+
+
+
 </body>
 </html>

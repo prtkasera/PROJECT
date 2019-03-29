@@ -33,11 +33,7 @@ public class PatientDAOImpl implements PatientDAO{
 		return false;
 	}
 
-	@Override
-	public boolean deletePatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	@Override
 	public boolean addPatient(Patient patient) {

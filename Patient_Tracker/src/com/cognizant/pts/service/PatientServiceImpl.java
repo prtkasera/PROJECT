@@ -26,12 +26,6 @@ public class PatientServiceImpl implements PatientService{
 	}
 
 	@Override
-	public boolean deletePatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return patientDao.deletePatient(patient);
-	}
-
-	@Override
 	public boolean addPatient(Patient patient) {
 		// TODO Auto-generated method stub
 		return patientDao.addPatient(patient);
