@@ -7,18 +7,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add Patient</title>
+<title>Add Admin</title>
 </head>
 <body>
-<springform:form modelAttribute="adminreg" method="post" action="addadmin.htm">
+<springform:form modelAttribute="adminRegModel" method="post" action="addadmin.htm">
 <table>
 
-<tr>
+<%-- <tr>
 <td><springform:label path="adminId">Admin ID:</springform:label>
 <td><springform:input path="adminId"/>
 </tr>
 
-<tr>
+ --%>
+ <tr>
 <td><springform:label path="firstName">First Name:</springform:label>
 <td><springform:input path="firstName"/>
 </tr>
@@ -38,7 +39,7 @@
 <td><springform:label path="gender">Gender:</springform:label></td>
 <td>
 	<springform:select path="gender">
-	<springform:options items="${gender}"/>
+	<springform:options items="${genderList}"/>
 	
 	</springform:select>
 </td>	
@@ -79,5 +80,7 @@
 </springform:form>
 ${status}
 
+<form method="post" action="login.htm">
+<input type="submit" value="Login Page"/></form>
 </body>
 </html>

@@ -10,6 +10,6 @@ public interface PatientDAO {
 	List<Patient> viewAllPatients();
 	boolean updatePatient(Patient patient);
 	boolean addPatient(Patient patient);
-	
+	Patient viewOnePatient(String patientId);
 	
 }

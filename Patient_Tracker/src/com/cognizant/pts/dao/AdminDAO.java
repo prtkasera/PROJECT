@@ -6,7 +6,7 @@ import com.cognizant.pts.entity.Admin;
 
 public interface AdminDAO {
 
-	boolean doLogin(Admin admin);
+	int doLogin(Admin admin);
 	boolean addAdmin(Admin admin);
 	
 }

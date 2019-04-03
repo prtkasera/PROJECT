@@ -9,28 +9,30 @@
 <title>Admin Login</title>
 </head>
 <body>
-<springform:form modelAttribute="admin" method="post" action="doLogin.htm">
+<springform:form modelAttribute="adminModel" method="post" action="doLogin.htm">
 <table>
 <tr>
 <td><springform:label path="adminId">Admin ID:</springform:label>
 <td><springform:input path="adminId"/>
+<springform:errors path="adminId" style="color:red"></springform:errors>
 </td>
 </tr>
 <tr>
 <td><springform:label path="adminPassword">Password:</springform:label>
 <td><springform:input path="adminPassword"/>
+<springform:errors path="adminPassword" style="color:red"></springform:errors>
 </td>
 </tr>
 <tr>
 <td><input type="submit" value="Login"></td>
 </tr>
 </table>
-<springform:errors path="adminId" style="color:red"></springform:errors> 
+
 </springform:form>
 
-<form action="adminregistration.htm" method=post></form>
+<form action="adminregistration.htm" method=post>
 <input type="submit" value="Sign Up">
-
+</form>
 
 
 </body>

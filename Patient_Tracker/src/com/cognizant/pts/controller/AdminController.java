@@ -10,17 +10,23 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cognizant.pts.entity.Admin;
+//import com.cognizant.pts.entity.Admin;
+import com.cognizant.pts.model.AdminModel;
 import com.cognizant.pts.service.AdminService;
-import com.cognizant.pts.validation.AdminValidator;
+import com.cognizant.pts.validator.AdminRegValidator;
+import com.cognizant.pts.validator.LoginValidator;
 
+@SessionAttributes("genderList")
 @Controller
 public class AdminController {
 
 	@Autowired
-	private AdminValidator adminValidator;
+	private AdminRegValidator adminRegValidator; 
+	@Autowired
+	private LoginValidator loginValidator;
 	@Autowired
 	private AdminService adminService;
 	
@@ -37,17 +43,17 @@ public class AdminController {
 	}
 
 	@RequestMapping(value="doLogin.htm",method=RequestMethod.POST)
-	public ModelAndView doLogin(@ModelAttribute("admin")Admin admin,Errors error)
+	public ModelAndView doLogin(@ModelAttribute("admin")AdminModel adminModel,Errors error)
 	{
 		ModelAndView mv=new ModelAndView();
-		ValidationUtils.invokeValidator(adminValidator, admin, error);
+		ValidationUtils.invokeValidator(loginValidator, adminModel, error);
 		if(error.hasErrors())
 		{
 			mv.setViewName("home");
 		}
 		else{
-		boolean checkAdminLogin=adminService.doLogin(admin);
-		if(checkAdminLogin)
+		int checkAdminLogin=adminService.doLogin(adminModel);
+		if(checkAdminLogin==3)
 		{	
 			mv.addObject("status","login Successful");
 			mv.setViewName("afterlogin");
@@ -61,42 +67,66 @@ public class AdminController {
 		return mv;
 	}
 	
-	@ModelAttribute("admin")
-	public Admin creatAdminObject()
+	@ModelAttribute("adminModel")
+	public AdminModel creatAdminObject()
 	{
-		Admin admin=new Admin();
-		return admin;
+		AdminModel adminModel=new AdminModel();
+		return adminModel;
 	}
 	
 	@RequestMapping(value="adminregistration.htm",method=RequestMethod.POST)
-	public String loadAdminRegistrationForm()
+	public ModelAndView loadAdminRegistrationForm()
 	{
+		ModelAndView mv=new ModelAndView();
 		List<String> genderList=new ArrayList<>();
 		genderList.add("Male");
 		genderList.add("Female");
 		genderList.add("Trans Gender");
-		return "addadmin";
+		mv.addObject("genderList", genderList);
+		mv.setViewName("addadmin");
+		return mv; 
 	}
 	
 	
 	
 	@RequestMapping(value="addadmin.htm",method=RequestMethod.POST)
-	public ModelAndView persistAdmin(@ModelAttribute("adminreg")Admin adminreg)
+	public ModelAndView persistAdmin(@ModelAttribute("adminRegModel")AdminModel adminRegModel,Errors errors)
 	{
 		
 		ModelAndView mv=new ModelAndView();
-		
-		boolean adminPersist=adminService.addAdmin(adminreg);
+		ValidationUtils.invokeValidator(loginValidator, adminRegModel, errors);
+		if(errors.hasErrors())
+		{
+			mv.setViewName("addadmin");
+		}
+		else
+			{boolean adminPersist=adminService.addAdmin(adminRegModel);
 		if(adminPersist)
 		{
-			mv.setViewName("home");
+			mv.addObject("status","Registration Successful");
+			mv.setViewName("addadmin");
 		}
 		else
 		{
 			mv.addObject("status","Registration Failed");
 			mv.setViewName("addadmin");
 		}
+			}
 		return mv;
 	}
 	
+	@ModelAttribute("adminRegModel")
+	public AdminModel creatAdminRegistrationObject()
+	{
+		AdminModel adminRegModel=new AdminModel();
+		return adminRegModel;
+	}
+	
+	@RequestMapping(value="login.htm" ,method=RequestMethod.POST)
+	public String loadLoginFormAfterRegistration()
+	{
+	return "home";
+		
+	}
+
 }

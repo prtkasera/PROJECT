@@ -10,13 +10,13 @@
 <title>Add Patient</title>
 </head>
 <body>
-<springform:form modelAttribute="patientModel" method="post" action="addpatient.htm">
+<springform:form commandName="onePatient" method="post" action="updatepatient.htm">
 <table>
 
-<%-- <tr>
+<tr>
 <td><springform:label path="patientId">Patient ID:</springform:label>
-<td><springform:input path="patientId"/>
-</tr> --%>
+<td><springform:input path="patientId" disabled="true"/>
+</tr> 
 
 <tr>
 <td><springform:label path="firstName">First Name:</springform:label>
@@ -92,12 +92,14 @@
 </tr>
 
 <tr>
-<td><input type="submit" value="Add Patient"></td>
+<td><input type="submit" value="Update Patient"></td>
 </tr>
 </table>
 
 </springform:form>
-${status}
+
+<h1 style="color=red">${status}</h1>
+
 <form action="patient.htm" method="post">
 <input type="submit" value="View Patients">
 </form>

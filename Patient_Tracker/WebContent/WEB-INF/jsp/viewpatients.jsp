@@ -16,35 +16,40 @@
 <th>Id</th>
 <th>First Name</th>
 <th>Last Name </th>
-<th>Age</th>
-<th>Gender</th>
-<th>Date of Birth</th>
 <th>Contact Number</th>
 <th>Email ID</th>
+<!-- <th>Age</th>
+<th>Gender</th>
+<th>Date of Birth</th>
 <th>Address Line</th>
 <th>City</th>
 <th>State</th>
 <th>Zip Code</th>
-
+ -->
 </tr>
 <c:forEach items="${patientList}" var="patient">
 <tr>
-<td><c:out value="${patient.patientId}"/></td>
+<td>
+<a href="viewonepatient.htm?patientId=${patient.patientId}">
+<c:out value="${patient.patientId}"></c:out></a>
+</td>
 <td><c:out value="${patient.firstName}"/></td>
 <td><c:out value="${patient.lastName}"/></td>
-<td><c:out value="${patient.age}"/></td>
-<td><c:out value="${patient.gender}"/></td>
-<td><c:out value="${patient.dob}"/></td>
 <td><c:out value="${patient.contactNumber}"/></td>
 <td><c:out value="${patient.emailId}"/></td>
+<%-- <td><c:out value="${patient.dob}"/></td>
+<td><c:out value="${patient.age}"/></td>
+<td><c:out value="${patient.gender}"/></td>
 <td><c:out value="${patient.addressLine1}"/></td>
 <td><c:out value="${patient.city}"/></td>
 <td><c:out value="${patient.state}"/></td>
-<td><c:out value="${patient.zipCode}"/></td>
+<td><c:out value="${patient.zipCode}"/></td> --%>
 </tr>
 
 </c:forEach>
 </table>
+<h3 style="color:red;">${status1}</h3>
+
 <form method="post" action="addpatientform.htm">
 <input type="submit" value="Add Patient"/>
 </form>

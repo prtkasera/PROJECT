@@ -1,5 +1,6 @@
 package com.cognizant.pts.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -15,20 +16,27 @@ public class AdminDAOImpl implements AdminDAO{
 @Autowired
 private SessionFactory sessionFactory;
 	@Override
-	public boolean doLogin(Admin admin) {
+	public int doLogin(Admin admin) {
 		// TODO Auto-generated method stub
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Admin o where o.adminId=:adminId and adminPassword=:adminPassword");
-		query.setParameter("adminId", admin.getAdminId());
-		query.setParameter("adminPassword",admin.getAdminPassword());
-		List<Admin> adminLoginList=query.list();
-		if(adminLoginList.isEmpty())
+		Query query=session.createQuery("from Admin o where o.adminId=:adminId");
+		query.setString("adminId", admin.getAdminId());
+		Query query1=session.createQuery("from Admin o where adminPassword=:adminPassword");
+		query1.setString("adminPassword", admin.getAdminPassword());
+		
+		List<Admin> adminIdList=query.list();
+		List<Admin> adminPasswordList=query1.list();
+		if(adminIdList.isEmpty())
 		{
-			return false;
+			return 1;
 	    }
-		else
+		else if(adminPasswordList.isEmpty())
 		{
-			return true;
+			return 2;
+		}
+		else 
+		{
+			return 3;
 		}
 	}
 		
@@ -37,11 +45,19 @@ private SessionFactory sessionFactory;
 	public boolean addAdmin(Admin admin) {
 		// TODO Auto-generated method stub
 		Session session=sessionFactory.openSession();
+		generateAdminId();
 		Transaction transaction=session.beginTransaction();
 		session.persist(admin);
 		transaction.commit();
 		session.close();
 		return true;
 	}
+	public void generateAdminId()
+	{
+		Session session=sessionFactory.openSession();
+		Query query=session.createSQLQuery("select ADMINSEQ.nextval from DUAL");
+		Long key=((BigDecimal) query.uniqueResult()).longValue();
+		StoreAdminId.addAdminId(key.intValue());
+		}
 
 }
